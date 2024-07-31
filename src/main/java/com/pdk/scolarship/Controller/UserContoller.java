@@ -6,17 +6,16 @@ import java.util.HashMap;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/user")
 public class UserContoller {
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<HashMap<String, String>> getMethodName() {
         HashMap<String, String> data = new HashMap<>();
         data.put("name", "Pranav Khaire");
@@ -25,11 +24,9 @@ public class UserContoller {
         return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
-    @PostMapping("path")
-    public String postMethodName(@RequestBody String entity) {
-        // TODO: process POST request
-
-        return entity;
+    @GetMapping("/")
+    public String getMethodName(@RequestParam String param) {
+        return new String("Hello From Server");
     }
 
 }
