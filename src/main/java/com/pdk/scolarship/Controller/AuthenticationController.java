@@ -17,7 +17,7 @@ import com.pdk.scolarship.Dto.SignUpRequest;
 import com.pdk.scolarship.Entity.User;
 
 @RestController
-@RequestMapping("api/v1/auth")
+@RequestMapping("api/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
