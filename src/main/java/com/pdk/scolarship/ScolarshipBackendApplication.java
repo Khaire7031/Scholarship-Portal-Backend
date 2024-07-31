@@ -12,5 +12,4 @@ public class ScolarshipBackendApplication {
 		System.out.println("| 	Scolarship Backend Started      |");
 		System.out.println("-----------------------------------------");
 	}
-
 }
