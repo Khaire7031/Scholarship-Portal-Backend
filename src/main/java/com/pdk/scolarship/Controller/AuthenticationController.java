@@ -5,6 +5,7 @@ import com.pdk.scolarship.ServiceImplementation.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +17,9 @@ import com.pdk.scolarship.Dto.SignInRequest;
 import com.pdk.scolarship.Dto.SignUpRequest;
 import com.pdk.scolarship.Entity.User;
 
+@CrossOrigin
 @RestController
-@RequestMapping("api/auth")
+@RequestMapping("api/v1/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
 
