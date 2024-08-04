@@ -3,6 +3,8 @@ package com.pdk.scolarship.Controller;
 import com.pdk.scolarship.ServiceImplementation.AuthenticationService;
 
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -16,6 +18,7 @@ import com.pdk.scolarship.Dto.RefreshTokenRequest;
 import com.pdk.scolarship.Dto.SignInRequest;
 import com.pdk.scolarship.Dto.SignUpRequest;
 import com.pdk.scolarship.Entity.User;
+import com.pdk.scolarship.Enums.AppConstants;
 
 @CrossOrigin
 @RestController
@@ -23,6 +26,7 @@ import com.pdk.scolarship.Entity.User;
 @RequiredArgsConstructor
 public class AuthenticationController {
 
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationController.class);
     @Autowired
     private final AuthenticationService authenticationService;
 
@@ -38,6 +42,23 @@ public class AuthenticationController {
 
     @PostMapping("/login")
     public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody SignInRequest signInRequest) {
+        // System.out.printl;
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        System.out.println(signInRequest.getEmail() + " : " + signInRequest.getPassword());
+        logger.info(AppConstants.PURPLE + "User name = {}" + AppConstants.WHITE, signInRequest.getEmail());
+
+        JwtAuthenticationResponse response = authenticationService.signIn(signInRequest);
+
+        logger.info(AppConstants.RED + "Responce = {}" + AppConstants.WHITE, response.getToken());
+        logger.info(AppConstants.BLUE + "Responce = {}" + AppConstants.WHITE, response.getRefreshToken());
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
         return ResponseEntity.ok(authenticationService.signIn(signInRequest));
     }
 
