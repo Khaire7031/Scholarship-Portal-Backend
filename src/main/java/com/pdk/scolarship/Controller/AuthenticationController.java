@@ -30,23 +30,21 @@ public class AuthenticationController {
     @Autowired
     private final AuthenticationService authenticationService;
 
+    // Add new user
     @PostMapping("/signup")
     public ResponseEntity<User> signUp(@RequestBody SignUpRequest signUpRequest) {
         return ResponseEntity.ok(authenticationService.signUp(signUpRequest));
     }
 
+    // Add new Admin
     @PostMapping("/admin-signup")
     public ResponseEntity<User> adminSignUp(@RequestBody SignUpRequest signUpRequest) {
         return ResponseEntity.ok(authenticationService.adminSignUp(signUpRequest));
     }
 
+    // Login User and admin
     @PostMapping("/login")
     public ResponseEntity<JwtAuthenticationResponse> login(@RequestBody SignInRequest signInRequest) {
-        // System.out.printl;
-        System.out.println();
-        System.out.println();
-        System.out.println();
-
         System.out.println(signInRequest.getEmail() + " : " + signInRequest.getPassword());
         logger.info(AppConstants.PURPLE + "User name = {}" + AppConstants.WHITE, signInRequest.getEmail());
 
@@ -55,13 +53,10 @@ public class AuthenticationController {
         logger.info(AppConstants.RED + "Responce = {}" + AppConstants.WHITE, response.getToken());
         logger.info(AppConstants.BLUE + "Responce = {}" + AppConstants.WHITE, response.getRefreshToken());
 
-        System.out.println();
-        System.out.println();
-        System.out.println();
-
         return ResponseEntity.ok(authenticationService.signIn(signInRequest));
     }
 
+    // Get Refresh Token
     @PostMapping("/refresh")
     public ResponseEntity<JwtAuthenticationResponse> refresh(@RequestBody RefreshTokenRequest refreshTokenRequest) {
         return ResponseEntity.ok(authenticationService.refreshToken(refreshTokenRequest));
